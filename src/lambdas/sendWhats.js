@@ -6,13 +6,20 @@ const sendWhats = async () => {
     try {
         const corpo = event.body
         const {destinatario, mensagem} = corpo
-        const enviar = sendMessage(destinatario,mensagem)
-        console.log(event.body)
-        return {
-            statusCode: 200,
-            body: JSON.stringify(enviar)
+        if(destinatario && mensagem){
+            const enviar = sendMessage(destinatario, mensagem)
+            console.log(event.body)
+            return {
+                statusCode: 200,
+                body: JSON.stringify(enviar)
+            }
+        }else{
+            return {
+                statusCode:412,
+                body: JSON.stringify({erro:404, mensagem:'Requisição feita sem destinatario ou mensagem'})
+            }
         }
-    } catch (error) {
+    }catch (error) {
         return {
             statusCode: 500,
             body: JSON.stringify(error)
