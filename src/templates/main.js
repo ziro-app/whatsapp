@@ -1,3 +1,4 @@
+
 require('dotenv').config()
 const middy = require('@middy/core')
 const { basicAuth } = require('@ziro/middleware')
@@ -12,4 +13,5 @@ const main = handler =>
         .use(httpJsonBodyParser())
         .use(httpErrorHandler())
         .use(cors())
+
 module.exports = main
