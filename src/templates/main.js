@@ -7,10 +7,10 @@ const createError = require('http-errors')
 const cors = require('@middy/http-cors')
 
 const main = handler =>
-    middy(handler)
-        .use(basicAuth)
-        .use(httpJsonBodyParser())
-        .use(httpErrorHandler())
-        .use(cors())
+	middy(handler)
+	.use(basicAuth)
+	.use(httpJsonBodyParser)
+	.use(httpErrorHandler)
+	.use(cors)
 
 module.exports = main

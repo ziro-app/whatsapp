@@ -1,4 +1,4 @@
-const sendMessage = require('../apoio/send-message')
+const sendMessage = require('../apoio/sendMessage')
 const main = require('../templates/main')
 require('dotenv').config()
 
@@ -7,7 +7,7 @@ const sendWhats = async () => {
         const corpo = event.body
         const {destinatario, mensagem} = corpo
         const enviar = sendMessage(destinatario,mensagem)
-        console.log(event.queryStringParameter)
+        console.log(event.body)
         return {
             statusCode: 200,
             body: JSON.stringify(enviar)
