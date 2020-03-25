@@ -1,4 +1,3 @@
-
 require('dotenv').config()
 const middy = require('@middy/core')
 const { basicAuth } = require('@ziro/middleware')
