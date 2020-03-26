@@ -10,8 +10,13 @@ const enviarMensagem = (numberTo,body) => {
             from: `whatsapp:+${process.env.numero_ziro_sand}`,     
             to: `whatsapp:+${numberTo}`
         }) 
-        .then(message => console.log(message.sid)) 
-        .catch(err => {console.error(err)
+        .then(message => {
+            console.log(message.sid)
+            return message.sid
+        })
+        .catch(err => {
+            console.log(err)
+            return {statusError: err.status, mensagem: err.message}
         })
 }
 
