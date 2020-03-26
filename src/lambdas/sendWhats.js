@@ -17,7 +17,6 @@ const sendWhats = async (event) => {
             }
         }
     }catch (error) {
-        console.log(bodyObject.destinatario)
         return {
             statusCode: 500,
             body: JSON.stringify(error)
