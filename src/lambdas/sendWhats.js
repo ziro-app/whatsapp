@@ -5,7 +5,8 @@ require('dotenv').config()
 const sendWhats = async (event) => {
     try {
         if(event.body.destinatario && event.body.mensagem){
-            const enviar = sendMessage(event.body.destinatario, event.body.mensagem)
+            const enviar = await sendMessage(event.body.destinatario, event.body.mensagem)
+            console.log(enviar)
             return {
                 statusCode: 200,
                 body: JSON.stringify(enviar)
