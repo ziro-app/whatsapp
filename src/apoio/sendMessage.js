@@ -1,23 +1,18 @@
 require('dotenv').config() 
-const accountSid = process.env.accountSid 
-const authToken = process.env.authToken
-const client = require('twilio')(accountSid, authToken)
 
-const enviarMensagem = (numberTo,body) => {
+const accountSid = process.env.accountSid 
+const authToken = process.env.authToken 
+const client = require('twilio')(accountSid, authToken) 
+
+const enviarMensagem = (destinatario, mensagem) => {
     client.messages 
         .create({ 
-            body: body, 
-            from: `whatsapp:+${process.env.numero_ziro_sand}`,     
-            to: `whatsapp:+${numberTo}`
+            body: mensagem, 
+            from: `whatsapp:+${process.env.numero_ziro_sand}`,       
+            to: `whatsapp:+${destinatario}` 
         }) 
-        .then(message => {
-            console.log(message.sid)
-            return message.sid
-        })
-        .catch(err => {
-            console.log(err)
-            return {statusError: err.status, mensagem: err.message}
-        })
+        .then(message => console.log(message.sid)) 
+        .done()
 }
 
 module.exports = enviarMensagem
