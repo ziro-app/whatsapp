@@ -4,12 +4,13 @@ require('dotenv').config()
 
 const sendWhats = async (event) => {
     try {
-        if(event.body.destinatario && event.body.mensagem){
-            const enviar = await sendMessage(event.body.destinatario, event.body.mensagem)
-            console.log(enviar)
+        const {destinatarios, mensagem} = event.body
+        if(destinatarios && mensagem){
+            const envios = destinatarios.map(async destinatario => await sendMessage(destinatario,mensagem))
+            console.log(envios)
             return {
                 statusCode: 200,
-                body: JSON.stringify(enviar)
+                body: JSON.stringify(envios)
             }
         }else{
             return {
