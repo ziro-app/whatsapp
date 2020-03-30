@@ -6,11 +6,13 @@ const sendWhats = async (event) => {
     try {
         const {destinatarios, mensagem} = event.body
         if(destinatarios && mensagem){
-            const envios = destinatarios.map(async destinatario => await sendMessage(destinatario,mensagem))
-            console.log(envios)
+            let envio = []
+            for (const destinatario of destinatarios) {
+                envio.push(await sendMessage(destinatario,mensagem))
+            }
             return {
                 statusCode: 200,
-                body: JSON.stringify(envios)
+                body: JSON.stringify(envio)
             }
         }else{
             return {
