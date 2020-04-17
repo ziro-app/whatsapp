@@ -8,15 +8,17 @@ const twilioTemplates = require('../utils/twilioTemplates')
 const sendTwilio = require('../utils/sendTwilio')
 
 console.log(basicAuth)
+console.log(inputValidator)
 
 const sendTemplate = async event => {
   const { recipient, template_name, template_parameters } = event.body
   const body = twilioTemplates(template_name, template_parameters)
   const result = await sendTwilio(recipient, body)
   console.log(result)
+  const response = result.status ? result.status : result
   return {
     statusCode: 200,
-    body: JSON.stringify(result.status, null, 4)
+    body: JSON.stringify(response, null, 4)
   }
 }
 
