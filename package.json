@@ -1,0 +1,26 @@
+{
+  "name": "whatsapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "netlify-lambda serve ./src/lambdas -p 9002",
+    "build": "netlify-lambda build ./src/lambdas"
+  },
+  "keywords": [],
+  "author": "Vitor Barbosa",
+  "license": "ISC",
+  "dependencies": {
+    "@middy/core": "^1.0.0-beta.10",
+    "@middy/http-error-handler": "^1.0.0-beta.10",
+    "@middy/http-json-body-parser": "^1.0.0-beta.10",
+    "@middy/validator": "^1.0.0-beta.10",
+    "@ziro/middleware": "^1.0.4",
+    "dotenv": "^8.2.0",
+    "netlify-lambda": "^1.6.3",
+    "twilio": "^3.42.2"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.50"
+  }
+}
