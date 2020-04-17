@@ -1,7 +1,9 @@
 const middy = require('@middy/core')
 const jsonBodyParser = require('@middy/http-json-body-parser')
 const httpErrorHandler = require('@middy/http-error-handler')
-const { basicAuth } = require('@ziro/middleware')
+const { preflight } = require('@ziro/middleware')
+const { auth } = require('@ziro/middleware')
+const { cors } = require('@ziro/middleware')
 const twilioTemplates = require('../utils/twilioTemplates')
 const sendTwilio = require('../utils/sendTwilio')
 
@@ -18,8 +20,10 @@ const sendTemplate = async event => {
 }
 
 const handler = middy(sendTemplate)
-  .use(basicAuth) // authorizes request using Ziro's own token
+  .use(preflight) // handles OPTIONS requests from browsers
+  .use(auth) // authorizes request using Ziro's own token
   .use(jsonBodyParser()) // parses the request body when it's a JSON and converts it to an object
   .use(httpErrorHandler()) // handles common http errors and returns proper responses
+  .use(cors) // handles CORS
 
 module.exports = { handler }
