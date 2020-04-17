@@ -9,7 +9,7 @@ const sendTemplate = async event => {
   const { recipient, template_name, template_parameters } = event.body
   const body = twilioTemplates(template_name, template_parameters)
   const result = await sendTwilio(recipient, body)
-  console.log(result)
+  console.log('Logging result:', result)
   const response = result.status ? result.status : result
   return {
     statusCode: 200,
