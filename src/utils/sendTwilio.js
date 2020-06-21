@@ -2,7 +2,6 @@ require('dotenv').config()
 const accountSid = process.env.TWILIO_ACCOUNT_SID
 const authToken = process.env.TWILIO_AUTH_TOKEN
 const twilio = require('twilio')
-const createError = require('http-errors')
 
 const sendTwilio = async (recipient, body) => {
     try {
@@ -13,8 +12,8 @@ const sendTwilio = async (recipient, body) => {
             to: `whatsapp:+${recipient}`
         })
     } catch (error) {
-        console.log('Error Log:',error)
-        throw createError(error.status || 400, error)
+        console.log('Error Log:', error)
+        throw { statusCode: error.status || 400, body: error }
     }
 }
 

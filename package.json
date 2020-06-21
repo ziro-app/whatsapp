@@ -12,11 +12,9 @@
   "license": "ISC",
   "dependencies": {
     "@middy/core": "^1.0.0-beta.10",
-    "@middy/http-error-handler": "^1.0.0-beta.10",
     "@middy/http-json-body-parser": "^1.0.0-beta.10",
-    "@ziro/middleware": "^1.0.4",
+    "@ziro/middleware": "^1.0.6",
     "dotenv": "^8.2.0",
-    "http-errors": "^1.7.3",
     "netlify-lambda": "^1.6.3",
     "twilio": "^3.42.2"
   },
