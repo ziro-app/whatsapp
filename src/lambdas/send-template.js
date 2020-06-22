@@ -7,7 +7,7 @@ const { errorHandler } = require('@ziro/middleware')
 const { cors } = require('@ziro/middleware')
 const twilioTemplates = require('../utils/twilioTemplates')
 const sendTwilio = require('../utils/sendTwilio')
-const allowed = null
+const allowed = 'http://localhost:8080'
 
 const sendTemplate = async event => {
   const { recipient, template_name, template_parameters } = event.body

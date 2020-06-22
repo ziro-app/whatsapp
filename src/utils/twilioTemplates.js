@@ -7,7 +7,9 @@ const twilioTemplates = (name, params) => {
 	// match template name to its expected parameters
 	const templates = {
 		'lead-registered': 
-			`Lead ${params.name} cadastrou-se no catálogo com o whatsapp ${params.whats}`
+			`Lead ${params.name} cadastrou-se no catálogo com o whatsapp ${params.whats}`,
+		'antifraud-trouble':
+			`Lead com dificuldades no antifraude. Veja na planilha`
 	}
 	if (!templates[name]) throw { statusCode: 400, body: 'Invalid template_name' }
 	return templates[name]
