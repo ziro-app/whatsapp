@@ -4,12 +4,15 @@ const twilioTemplates = (name, params) => {
 	if (name === 'lead-registered')
 		if (!params.name || !params.whats)
 			throw { statusCode: 400, body: `Invalid template_parameters for template: '${name}'` }
+	if (name === 'antifraud-trouble')
+		if (!params.razao)
+			throw { statusCode: 400, body: `Invalid template_parameters for template: '${name}'` }
 	// match template name to its expected parameters
 	const templates = {
 		'lead-registered': 
 			`Lead ${params.name} cadastrou-se no catálogo com o whatsapp ${params.whats}`,
 		'antifraud-trouble':
-			`Lead com dificuldades no antifraude. Veja na planilha`
+			`Lead ${params.razao} com dificuldades no antifraude. Veja na planilha`
 	}
 	if (!templates[name]) throw { statusCode: 400, body: 'Invalid template_name' }
 	return templates[name]
