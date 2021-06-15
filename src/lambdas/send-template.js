@@ -1,13 +1,11 @@
 const middy = require('@middy/core')
 const jsonBodyParser = require('@middy/http-json-body-parser')
 const { preflight } = require('@ziro/middleware')
-const { allowedOrigin } = require('@ziro/middleware')
 const { auth } = require('@ziro/middleware')
 const { errorHandler } = require('@ziro/middleware')
 const { cors } = require('@ziro/middleware')
 const twilioTemplates = require('../utils/twilioTemplates')
 const sendTwilio = require('../utils/sendTwilio')
-const allowed = 'http://localhost:8080'
 
 const sendTemplate = async event => {
   const { recipient, template_name, template_parameters } = event.body
@@ -23,7 +21,6 @@ const sendTemplate = async event => {
 
 const handler = middy(sendTemplate)
   .use(preflight)
-  .use(allowedOrigin(allowed))
   .use(auth)
   .use(jsonBodyParser())
   .use(errorHandler)
